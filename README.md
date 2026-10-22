@@ -15,17 +15,6 @@ Food prices rise suddenly because of inflation and supply issues. This makes mon
 3. **Forecasts prices** for key commodities (tomato, onion, potato, wheat and others) using per-commodity polynomial regression from scikit-learn, with MAE and R² reported for each.
 4. **Visualizes** the results with Matplotlib and Seaborn charts, and exports a JSON file that powers a Chart.js web dashboard.
 
-## Screenshots
-
-**Commodity × state price heatmap**
-![Heatmap](charts/heatmap.png)
-
-**CPI inflation by division (rural, urban, combined)**
-![CPI inflation](charts/cpi_inflation.png)
-
-**Commodity price forecasts**
-![Predictions](charts/predictions.png)
-
 ## How to run
 ```bash
 pip install -r requirements.txt
