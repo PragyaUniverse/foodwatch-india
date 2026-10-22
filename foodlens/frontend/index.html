@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FoodWatch India — Price & Inflation Dashboard</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="brand">🌾 Food<span>Watch</span> India</div>
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="go('overview', this)">Overview</button>
+    <button class="tab-btn" onclick="go('charts', this)">Charts</button>
+    <button class="tab-btn" onclick="go('cpi', this)">CPI Data</button>
+    <button class="tab-btn" onclick="go('predictions', this)">Predictions</button>
+  </div>
+  <div class="nav-badge">April 2026</div>
+</nav>
+
+<!-- OVERVIEW -->
+<div id="pg-overview" class="page active">
+  <div class="page-header">
+    <div class="page-title">Food Price & Inflation Dashboard</div>
+    <div class="page-sub">APMC market arrivals · CPI March 2026 (Provisional) · scikit-learn price predictions</div>
+  </div>
+  <div class="kpi-row" id="kpi-row"></div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Top Commodities by Price</div>
+      <div class="card-sub">Average modal price across all APMC markets (Rs/Quintal)</div>
+      <canvas id="chart-comms" height="240"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-title">CPI Inflation by Division</div>
+      <div class="card-sub">Rural vs Urban vs Combined — March 2026 (%)</div>
+      <canvas id="chart-cpi" height="240"></canvas>
+    </div>
+  </div>
+  <div class="grid-1">
+    <div class="card">
+      <div class="card-title">State-wise Average Prices</div>
+      <div class="card-sub">Average food commodity prices by state (Rs/Quintal)</div>
+      <canvas id="chart-states" height="140"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- CHARTS -->
+<div id="pg-charts" class="page">
+  <div class="page-header">
+    <div class="page-title">Analysis Charts</div>
+    <div class="page-sub">Generated with matplotlib & seaborn — April 2026 market data</div>
+  </div>
+  <div class="grid-2" id="py-charts"></div>
+</div>
+
+<!-- CPI DATA -->
+<div id="pg-cpi" class="page">
+  <div class="page-header">
+    <div class="page-title">CPI Inflation Data</div>
+    <div class="page-sub">All India General Index — March 2026 Provisional</div>
+  </div>
+  <div class="grid-1">
+    <div class="card cpi-card-wrap">
+      <div id="cpi-table-wrap"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PREDICTIONS -->
+<div id="pg-predictions" class="page">
+  <div class="page-header">
+    <div class="page-title">Price Predictions</div>
+    <div class="page-sub">Enter a commodity and date to estimate predicted price</div>
+  </div>
+  <div class="grid-1">
+    <div class="card">
+      <div class="card-title">Get Prediction</div>
+      <div class="card-sub">Forecasts are generated in Python using scikit-learn · prices are INR per quintal</div>
+      <form id="prediction-form" class="prediction-form">
+        <input list="commodity-list" id="pred-commodity" class="search-input" placeholder="Enter commodity (e.g. Tomato)" required />
+        <datalist id="commodity-list"></datalist>
+        <input type="date" id="pred-date" class="search-input" required />
+        <button type="submit" class="predict-btn">Predict Price</button>
+      </form>
+      <div id="pred-result" class="prediction-result">Choose a commodity and prediction date.</div>
+      <div class="chart-wrap">
+        <canvas id="pred-line-chart" height="110"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Prices shown are average market prices per quintal.
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
